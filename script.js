@@ -1,9 +1,11 @@
 const card = document.getElementById("card");
+const heading = card.querySelector("h1");
 const message = document.getElementById("message");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const buttons = document.getElementById("buttons");
 const confetti = document.getElementById("confetti");
+const finalScreen = document.getElementById("finalScreen");
 
 const noTexts = [
   "No",
@@ -17,6 +19,7 @@ const noTexts = [
 let noCount = 0;
 let locked = false;
 let yesScale = 1;
+let lastSparkleTime = 0;
 
 function placeNoButtonRandomly() {
   if (locked) return;
@@ -62,6 +65,12 @@ function celebrateYes() {
   noBtn.style.pointerEvents = "none";
 
   launchHearts(30);
+
+  setTimeout(() => {
+    card.classList.add("final");
+    finalScreen.setAttribute("aria-hidden", "false");
+    heading.textContent = "You said yes!";
+  }, 1200);
 }
 
 yesBtn.addEventListener("click", celebrateYes);
@@ -88,3 +97,39 @@ window.addEventListener("resize", () => {
     noBtn.style.top = "0";
   }
 });
+
+function spawnSparkle(x, y) {
+  const sparkle = document.createElement("span");
+  sparkle.className = "sparkle";
+  sparkle.style.left = `${x}px`;
+  sparkle.style.top = `${y}px`;
+  document.body.appendChild(sparkle);
+
+  setTimeout(() => {
+    sparkle.remove();
+  }, 520);
+}
+
+window.addEventListener(
+  "mousemove",
+  (event) => {
+    const now = performance.now();
+    if (now - lastSparkleTime < 35) return;
+    lastSparkleTime = now;
+    spawnSparkle(event.clientX, event.clientY);
+  },
+  { passive: true }
+);
+
+window.addEventListener(
+  "touchmove",
+  (event) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    const now = performance.now();
+    if (now - lastSparkleTime < 50) return;
+    lastSparkleTime = now;
+    spawnSparkle(touch.clientX, touch.clientY);
+  },
+  { passive: true }
+);
