@@ -1,0 +1,215 @@
+:root {
+  --bg-1: #fff0ea;
+  --bg-2: #ffd8c8;
+  --bg-3: #ffb3a7;
+  --ink: #341412;
+  --yes: #c62f2f;
+  --yes-hover: #9f2020;
+  --no: #ffffff;
+  --no-ink: #7d3c37;
+  --card: rgba(255, 248, 243, 0.74);
+  --card-border: rgba(139, 62, 62, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  font-family: "Fraunces", serif;
+  color: var(--ink);
+  background: radial-gradient(circle at 20% 20%, var(--bg-1), transparent 40%),
+    radial-gradient(circle at 80% 10%, var(--bg-2), transparent 42%),
+    linear-gradient(135deg, #ffe9dd, var(--bg-3));
+  overflow: hidden;
+}
+
+.glow {
+  position: fixed;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 50%;
+  filter: blur(56px);
+  z-index: -2;
+  opacity: 0.8;
+  animation: drift 12s ease-in-out infinite;
+}
+
+.glow-one {
+  top: -6rem;
+  left: -4rem;
+  background: #ffc6ba;
+}
+
+.glow-two {
+  bottom: -8rem;
+  right: -5rem;
+  background: #ff8f84;
+  animation-delay: -6s;
+}
+
+.card {
+  width: min(42rem, 100%);
+  text-align: center;
+  border: 1px solid var(--card-border);
+  border-radius: 1.5rem;
+  padding: 2rem 1.2rem;
+  background: var(--card);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 20px 45px rgba(84, 24, 20, 0.2);
+  transform: translateY(0);
+  animation: riseIn 700ms ease;
+  position: relative;
+}
+
+.kicker {
+  margin: 0;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 0.2em;
+  font-size: 1.2rem;
+  opacity: 0.72;
+}
+
+h1 {
+  margin: 0.5rem 0 0.8rem;
+  font-size: clamp(2rem, 6vw, 4.2rem);
+  line-height: 0.95;
+}
+
+.message {
+  margin: 0 auto 1.4rem;
+  width: min(34ch, 100%);
+  font-size: clamp(1rem, 2.6vw, 1.25rem);
+}
+
+.buttons {
+  position: relative;
+  min-height: 4.5rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 0.9rem 1.2rem;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 0.06em;
+  font-size: 1.1rem;
+  transition: transform 180ms ease, background-color 180ms ease, opacity 180ms ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-yes {
+  background: var(--yes);
+  color: #fffaf7;
+}
+
+.btn-yes:hover {
+  background: var(--yes-hover);
+}
+
+.btn-no {
+  background: var(--no);
+  color: var(--no-ink);
+  position: relative;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.72;
+}
+
+.card.yes h1 {
+  animation: pulse 500ms ease;
+}
+
+.card.yes .btn-no {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  font-size: clamp(1rem, 1.8vw, 1.6rem);
+  animation: floatUp 1700ms ease forwards;
+  opacity: 0;
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(18px, -14px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(28px) scale(0.85);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-180px) scale(1.2) rotate(12deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .card {
+    padding: 1.6rem 1rem;
+  }
+
+  .buttons {
+    min-height: 7rem;
+    flex-direction: column;
+  }
+}
