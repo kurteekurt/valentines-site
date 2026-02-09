@@ -70,7 +70,7 @@ function celebrateYes() {
     card.classList.add("final");
     finalScreen.setAttribute("aria-hidden", "false");
     heading.textContent = "You said yes!";
-  }, 1200);
+  }, 5000);
 }
 
 yesBtn.addEventListener("click", celebrateYes);
