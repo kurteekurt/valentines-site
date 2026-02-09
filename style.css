@@ -98,6 +98,19 @@ h1 {
   transform: scale(1);
 }
 
+.yes-gif {
+  display: block;
+  width: min(17rem, 88%);
+  margin: 0 auto 0;
+  border-radius: 1rem;
+  box-shadow: 0 14px 24px rgba(84, 24, 20, 0.22);
+  opacity: 0;
+  max-height: 0;
+  transform: scale(0.92);
+  transition: opacity 260ms ease, transform 260ms ease, max-height 260ms ease,
+    margin 260ms ease;
+}
+
 .buttons {
   position: relative;
   min-height: 4.5rem;
@@ -151,6 +164,13 @@ h1 {
 .card.yes .btn-no {
   opacity: 0;
   pointer-events: none;
+}
+
+.card.yes .yes-gif {
+  opacity: 1;
+  max-height: 20rem;
+  transform: scale(1);
+  margin: 0 auto 1rem;
 }
 
 .confetti {
