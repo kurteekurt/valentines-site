@@ -16,6 +16,7 @@ const noTexts = [
 
 let noCount = 0;
 let locked = false;
+let yesScale = 1;
 
 function placeNoButtonRandomly() {
   if (locked) return;
@@ -74,6 +75,8 @@ noBtn.addEventListener("mouseenter", () => {
 noBtn.addEventListener("click", (event) => {
   event.preventDefault();
   noCount += 1;
+  yesScale = Math.min(2, yesScale + 0.15);
+  yesBtn.style.transform = `scale(${yesScale})`;
   noBtn.textContent = noTexts[Math.min(noCount, noTexts.length - 1)];
   placeNoButtonRandomly();
 });
