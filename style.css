@@ -173,6 +173,15 @@ h1 {
   margin: 0 auto 1rem;
 }
 
+.card.yes .valentine-gif {
+  opacity: 0;
+  max-height: 0;
+  transform: scale(0.92);
+  margin: 0 auto 0;
+  transition: opacity 220ms ease, transform 220ms ease, max-height 220ms ease,
+    margin 220ms ease;
+}
+
 .final-screen {
   position: absolute;
   inset: 0;
