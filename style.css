@@ -87,6 +87,17 @@ h1 {
   font-size: clamp(1rem, 2.6vw, 1.25rem);
 }
 
+.valentine-gif {
+  display: block;
+  width: min(17rem, 88%);
+  margin: 0 auto 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 14px 24px rgba(84, 24, 20, 0.22);
+  opacity: 1;
+  max-height: 20rem;
+  transform: scale(1);
+}
+
 .buttons {
   position: relative;
   min-height: 4.5rem;
